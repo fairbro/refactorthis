@@ -10,5 +10,6 @@ namespace Web.Api.Core.Gateways.Repositories
         Task<IEnumerable<Product>> GetAll();
         Task<IEnumerable<Product>> GetAllByName(string name);
         Task<bool> Delete(Guid id);
+        Task<Product> Create(Product id);
     }
 }

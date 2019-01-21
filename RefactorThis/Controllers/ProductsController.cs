@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Web.Http;
 using Web.Api.Core.Dto.UseCaseRequests;
+using Web.Api.Core.Gateways.Repositories;
 using Web.Api.Core.Interfaces;
 
 namespace refactor_this.Controllers
@@ -52,12 +53,20 @@ namespace refactor_this.Controllers
             return Ok(response.Product);
         }
 
-        //[Route]
-        //[HttpPost]
-        //public void Create(Models.Product product)
-        //{
-        //    product.Save();
-        //}
+        [Route]
+        [HttpPost]
+        public async Task<IHttpActionResult> Create(Product product)
+        {
+            //TODO: some validation logic.
+            var request = new CreateProductRequest { Product = product };
+
+            var response = await _productUseCase.Handle(request);
+
+            if (response.Product.Id == null)
+                return BadRequest();
+
+            return Created(Request.RequestUri.AbsoluteUri + response.Product.Id, response.Product);
+        }
 
         //[Route("{id}")]
         //[HttpPut]
