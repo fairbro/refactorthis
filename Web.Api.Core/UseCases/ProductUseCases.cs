@@ -1,12 +1,13 @@
 ﻿using System.Threading.Tasks;
-using Web.Api.Core.Dto.ProductResponses;
+using Web.Api.Core.Dto.Requests.Products;
+using Web.Api.Core.Dto.Responses.Products;
 using Web.Api.Core.Dto.UseCaseRequests;
 using Web.Api.Core.Gateways.Repositories;
 using Web.Api.Core.Interfaces;
 
 namespace Web.Api.Core.UseCases
 {
-    public class ProductUseCases : IProductUseCases
+    public class ProductUseCases : IProductHandler
     {
         private readonly IProductRepository _productRepository;
 

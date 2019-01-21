@@ -1,4 +1,4 @@
-﻿namespace Web.Api.Core.Dto.ProductResponses
+﻿namespace Web.Api.Core.Dto.Responses.Products
 {
     public class UpdateProductResponse
     {

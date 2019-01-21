@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Web.Api.Infrastructure
 {
-    public class IEntity
+    public interface IEntity
     {
-        public Guid Id { get; set; }
     }
 }

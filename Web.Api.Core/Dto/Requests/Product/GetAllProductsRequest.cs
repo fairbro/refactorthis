@@ -1,4 +1,4 @@
-﻿namespace Web.Api.Core.Dto.UseCaseRequests
+﻿namespace Web.Api.Core.Dto.Requests.Products
 {
     public class GetAllProductsRequest
     {
