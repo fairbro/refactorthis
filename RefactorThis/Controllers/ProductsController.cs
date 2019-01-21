@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using refactor_this.Models;
-using Web.Api.Core;
+using System.Web.Http.Results;
 using Web.Api.Core.Dto.UseCaseRequests;
 using Web.Api.Core.Gateways.Repositories;
 using Web.Api.Core.Interfaces;
@@ -20,112 +20,111 @@ namespace refactor_this.Controllers
             _productUseCase = productUseCase;
         }
 
-        [Route]
-        [HttpGet]
-        public Products GetAll()
-        {
-            return new Products();
-        }
+        //[Route]
+        //[HttpGet]
+        //public Products GetAll()
+        //{
+        //    return new Products();
+        //}
 
-        [Route]
-        [HttpGet]
-        public Products SearchByName(string name)
-        {
-            return new Products(name);
-        }
+        //[Route]
+        //[HttpGet]
+        //public Products SearchByName(string name)
+        //{
+        //    return new Products(name);
+        //}
 
         [Route("{id}")]
         [HttpGet]
-        public async Task<Models.Product> GetProduct(Guid id)
+        public async Task<IHttpActionResult> GetProduct(Guid id)
         {
             var request = new GetProductRequest { Id = id };
 
-            await _productUseCase.Handle(request);
+            var response = await _productUseCase.Handle(request);
 
-            var product = new Models.Product(id);
-            if (product.IsNew)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+            if (response.Product == null)
+                return NotFound();
 
-            return product;
+            return Ok(response.Product);
         }
 
-        [Route]
-        [HttpPost]
-        public void Create(Models.Product product)
-        {
-            product.Save();
-        }
+        //[Route]
+        //[HttpPost]
+        //public void Create(Models.Product product)
+        //{
+        //    product.Save();
+        //}
 
-        [Route("{id}")]
-        [HttpPut]
-        public void Update(Guid id, Models.Product product)
-        {
-            var orig = new Models.Product(id)
-            {
-                Name = product.Name,
-                Description = product.Description,
-                Price = product.Price,
-                DeliveryPrice = product.DeliveryPrice
-            };
+        //[Route("{id}")]
+        //[HttpPut]
+        //public void Update(Guid id, Models.Product product)
+        //{
+        //    var orig = new Models.Product(id)
+        //    {
+        //        Name = product.Name,
+        //        Description = product.Description,
+        //        Price = product.Price,
+        //        DeliveryPrice = product.DeliveryPrice
+        //    };
 
-            if (!orig.IsNew)
-                orig.Save();
-        }
+        //    if (!orig.IsNew)
+        //        orig.Save();
+        //}
 
-        [Route("{id}")]
-        [HttpDelete]
-        public void Delete(Guid id)
-        {
-            var product = new Models.Product(id);
-            product.Delete();
-        }
+        //[Route("{id}")]
+        //[HttpDelete]
+        //public void Delete(Guid id)
+        //{
+        //    var product = new Models.Product(id);
+        //    product.Delete();
+        //}
 
-        [Route("{productId}/options")]
-        [HttpGet]
-        public ProductOptions GetOptions(Guid productId)
-        {
-            return new ProductOptions(productId);
-        }
+        //[Route("{productId}/options")]
+        //[HttpGet]
+        //public ProductOptions GetOptions(Guid productId)
+        //{
+        //    return new ProductOptions(productId);
+        //}
 
-        [Route("{productId}/options/{id}")]
-        [HttpGet]
-        public ProductOption GetOption(Guid productId, Guid id)
-        {
-            var option = new ProductOption(id);
-            if (option.IsNew)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+        //[Route("{productId}/options/{id}")]
+        //[HttpGet]
+        //public ProductOption GetOption(Guid productId, Guid id)
+        //{
+        //    var option = new ProductOption(id);
+        //    if (option.IsNew)
+        //        throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            return option;
-        }
+        //    return option;
+        //}
 
-        [Route("{productId}/options")]
-        [HttpPost]
-        public void CreateOption(Guid productId, ProductOption option)
-        {
-            option.ProductId = productId;
-            option.Save();
-        }
+        //[Route("{productId}/options")]
+        //[HttpPost]
+        //public void CreateOption(Guid productId, ProductOption option)
+        //{
+        //    option.ProductId = productId;
+        //    option.Save();
+        //}
 
-        [Route("{productId}/options/{id}")]
-        [HttpPut]
-        public void UpdateOption(Guid id, ProductOption option)
-        {
-            var orig = new ProductOption(id)
-            {
-                Name = option.Name,
-                Description = option.Description
-            };
+        //[Route("{productId}/options/{id}")]
+        //[HttpPut]
+        //public void UpdateOption(Guid id, ProductOption option)
+        //{
+        //    var orig = new ProductOption(id)
+        //    {
+        //        Name = option.Name,
+        //        Description = option.Description
+        //    };
 
-            if (!orig.IsNew)
-                orig.Save();
-        }
+        //    if (!orig.IsNew)
+        //        orig.Save();
+        //}
 
-        [Route("{productId}/options/{id}")]
-        [HttpDelete]
-        public void DeleteOption(Guid id)
-        {
-            var opt = new ProductOption(id);
-            opt.Delete();
-        }
+        //[Route("{productId}/options/{id}")]
+        //[HttpDelete]
+        //public void DeleteOption(Guid id)
+        //{
+        //    var opt = new ProductOption(id);
+        //    opt.Delete();
+        //}
     }
 }

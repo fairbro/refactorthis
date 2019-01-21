@@ -71,17 +71,9 @@
     <Compile Include="EntityFramework\ApplicationDataContext.cs" />
     <Compile Include="EntityFramework\Product.cs" />
     <Compile Include="EntityFramework\ProductOption.cs" />
-    <Compile Include="ProductRepository.cs" />
+    <Compile Include="IEntity.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Database.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Database_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Database.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

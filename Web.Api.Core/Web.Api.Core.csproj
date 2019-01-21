@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\ProductResponses\GetProductResponse.cs" />
     <Compile Include="Dto\UseCaseRequests\GetProductRequest.cs" />
     <Compile Include="Gateways\Repositories\IProductRepository.cs" />
     <Compile Include="Gateways\Repositories\Product.cs" />
