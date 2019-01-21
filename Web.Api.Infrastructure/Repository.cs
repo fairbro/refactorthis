@@ -19,14 +19,15 @@ namespace Web.Api.Infrastructure
         {
             var entity = await _context.Products.SingleOrDefaultAsync(p => p.Id == id);
 
-            return new Web.Api.Core.Gateways.Repositories.Product
-            {
-                Id = entity.Id,
-                Name = entity.Name,
-                Description = entity.Description,
-                DeliveryPrice = entity.DeliveryPrice,
-                Price = entity.Price
-            };
+            return AutoMapper.Mapper.Map<Web.Api.Core.Gateways.Repositories.Product>(entity);
+            //return new Web.Api.Core.Gateways.Repositories.Product
+            //{
+            //    Id = entity.Id,
+            //    Name = entity.Name,
+            //    Description = entity.Description,
+            //    DeliveryPrice = entity.DeliveryPrice,
+            //    Price = entity.Price
+            //};
         }
     }
 }

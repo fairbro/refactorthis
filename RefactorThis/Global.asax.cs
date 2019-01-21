@@ -12,6 +12,7 @@ namespace refactor_this
     {
         protected void Application_Start()
         {
+            AutomapperConfig.Initialize();
             IocConfig.Configure();
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
