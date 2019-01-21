@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Http;
 using refactor_this.Models;
 using Web.Api.Core;
+using Web.Api.Core.Dto.UseCaseRequests;
+using Web.Api.Core.Gateways.Repositories;
+using Web.Api.Core.Interfaces;
 
 namespace refactor_this.Controllers
 {
     [RoutePrefix("products")]
     public class ProductsController : ApiController
     {
-        private readonly IProductRepository _productRepository;
+        private readonly IProductUseCase _productUseCase;
 
-        public ProductsController(IProductRepository productRepository)
+        public ProductsController(IProductUseCase productUseCase)
         {
-            _productRepository = productRepository;
+            _productUseCase = productUseCase;
         }
 
         [Route]
@@ -32,9 +36,13 @@ namespace refactor_this.Controllers
 
         [Route("{id}")]
         [HttpGet]
-        public Product GetProduct(Guid id)
+        public async Task<Models.Product> GetProduct(Guid id)
         {
-            var product = new Product(id);
+            var request = new GetProductRequest { Id = id };
+
+            await _productUseCase.Handle(request);
+
+            var product = new Models.Product(id);
             if (product.IsNew)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
@@ -43,16 +51,16 @@ namespace refactor_this.Controllers
 
         [Route]
         [HttpPost]
-        public void Create(Product product)
+        public void Create(Models.Product product)
         {
             product.Save();
         }
 
         [Route("{id}")]
         [HttpPut]
-        public void Update(Guid id, Product product)
+        public void Update(Guid id, Models.Product product)
         {
-            var orig = new Product(id)
+            var orig = new Models.Product(id)
             {
                 Name = product.Name,
                 Description = product.Description,
@@ -68,7 +76,7 @@ namespace refactor_this.Controllers
         [HttpDelete]
         public void Delete(Guid id)
         {
-            var product = new Product(id);
+            var product = new Models.Product(id);
             product.Delete();
         }
 
