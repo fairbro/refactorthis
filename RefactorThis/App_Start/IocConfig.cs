@@ -21,7 +21,7 @@ namespace refactor_me
 
             builder.RegisterType<ApplicationDataContext>().As<ApplicationDataContext>();
             builder.RegisterType<Repository>().As<IProductRepository>();
-            builder.RegisterType<ProductUseCase>().As<IProductUseCase>();
+            builder.RegisterType<GetProductUseCase>().As<IGetProductUseCase>();
 
             var container = builder.Build();
 

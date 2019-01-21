@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using Web.Api.Core.Gateways.Repositories;
@@ -20,14 +21,13 @@ namespace Web.Api.Infrastructure
             var entity = await _context.Products.SingleOrDefaultAsync(p => p.Id == id);
 
             return AutoMapper.Mapper.Map<Web.Api.Core.Gateways.Repositories.Product>(entity);
-            //return new Web.Api.Core.Gateways.Repositories.Product
-            //{
-            //    Id = entity.Id,
-            //    Name = entity.Name,
-            //    Description = entity.Description,
-            //    DeliveryPrice = entity.DeliveryPrice,
-            //    Price = entity.Price
-            //};
+        }
+
+        public async Task<IEnumerable<Web.Api.Core.Gateways.Repositories.Product>> GetAll()
+        {
+            var entity = await _context.Products.ToListAsync();
+
+            return AutoMapper.Mapper.Map<IEnumerable<Web.Api.Core.Gateways.Repositories.Product>>(entity);
         }
     }
 }

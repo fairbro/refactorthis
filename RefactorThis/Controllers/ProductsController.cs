@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Results;
 using Web.Api.Core.Dto.UseCaseRequests;
-using Web.Api.Core.Gateways.Repositories;
 using Web.Api.Core.Interfaces;
 
 namespace refactor_this.Controllers
@@ -13,19 +9,23 @@ namespace refactor_this.Controllers
     [RoutePrefix("products")]
     public class ProductsController : ApiController
     {
-        private readonly IProductUseCase _productUseCase;
+        private readonly IGetProductUseCase _productUseCase;
 
-        public ProductsController(IProductUseCase productUseCase)
+        public ProductsController(IGetProductUseCase productUseCase)
         {
             _productUseCase = productUseCase;
         }
 
-        //[Route]
-        //[HttpGet]
-        //public Products GetAll()
-        //{
-        //    return new Products();
-        //}
+        [Route]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetAll()
+        {
+            var request = new GetAllProductsRequest { };
+
+            var response = await _productUseCase.Handle(request);
+
+            return Ok(response.Products);
+        }
 
         //[Route]
         //[HttpGet]
