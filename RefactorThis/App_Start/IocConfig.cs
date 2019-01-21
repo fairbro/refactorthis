@@ -13,7 +13,7 @@ namespace refactor_me
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterApiControllers(Assembly.GetExecutingAssembly()); //Register WebApi Controllers
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             builder.RegisterType<ProductRepository>().As<IProductRepository>();
 
