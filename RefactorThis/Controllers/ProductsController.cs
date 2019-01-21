@@ -68,21 +68,20 @@ namespace refactor_this.Controllers
             return Created(Request.RequestUri.AbsoluteUri + response.Product.Id, response.Product);
         }
 
-        //[Route("{id}")]
-        //[HttpPut]
-        //public void Update(Guid id, Models.Product product)
-        //{
-        //    var orig = new Models.Product(id)
-        //    {
-        //        Name = product.Name,
-        //        Description = product.Description,
-        //        Price = product.Price,
-        //        DeliveryPrice = product.DeliveryPrice
-        //    };
+        [Route]
+        [HttpPut]
+        public async Task<IHttpActionResult> Update(Product product)
+        {
+            //TODO: some validation logic.
+            var request = new UpdateProductRequest { Product = product };
 
-        //    if (!orig.IsNew)
-        //        orig.Save();
-        //}
+            var response = await _productUseCase.Handle(request);
+
+            if (!response.Success)
+                return BadRequest();
+
+            return Ok();
+        }
 
         [Route("{id}")]
         [HttpDelete]

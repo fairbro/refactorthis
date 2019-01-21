@@ -65,5 +65,21 @@ namespace Web.Api.Infrastructure
 
             return createdEntity;
         }
+
+        public async Task<bool> Update(Core.Gateways.Repositories.Product product)
+        {
+            var entity = await _context.Products.SingleOrDefaultAsync(p => p.Id == product.Id);
+
+            if (entity == null)
+                return false;
+
+            AutoMapper.Mapper.Map(product, entity);
+
+            await _context.SaveChangesAsync();
+
+            var createdEntity = AutoMapper.Mapper.Map<Core.Gateways.Repositories.Product>(entity);
+
+            return true;
+        }
     }
 }

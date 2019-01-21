@@ -52,5 +52,15 @@ namespace Web.Api.Core.UseCases
                 Product = product
             };
         }
+
+        public async Task<UpdateProductResponse> Handle(UpdateProductRequest message)
+        {
+            var result = await _productRepository.Update(message.Product);
+
+            return new UpdateProductResponse
+            {
+                Success = result
+            };
+        }
     }
 }

@@ -48,11 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\ProductResponses\UpdateProductResponse.cs" />
     <Compile Include="Dto\ProductResponses\GetAllProductsByNameResponse.cs" />
     <Compile Include="Dto\ProductResponses\GetAllProductsResponse.cs" />
     <Compile Include="Dto\ProductResponses\DeleteProductResponse.cs" />
     <Compile Include="Dto\ProductResponses\CreateProductResponse.cs" />
     <Compile Include="Dto\ProductResponses\GetProductResponse.cs" />
+    <Compile Include="Dto\UseCaseRequests\UpdateProductRequest.cs" />
     <Compile Include="Dto\UseCaseRequests\CreateProductRequest.cs" />
     <Compile Include="Dto\UseCaseRequests\GetAllProductsRequest.cs" />
     <Compile Include="Dto\UseCaseRequests\GetAllProductsByNameRequest.cs" />
