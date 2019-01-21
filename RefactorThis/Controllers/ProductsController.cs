@@ -2,12 +2,20 @@
 using System.Net;
 using System.Web.Http;
 using refactor_this.Models;
+using Web.Api.Core;
 
 namespace refactor_this.Controllers
 {
     [RoutePrefix("products")]
     public class ProductsController : ApiController
     {
+        private readonly IProductRepository _productRepository;
+
+        public ProductsController(IProductRepository productRepository)
+        {
+            _productRepository = productRepository;
+        }
+
         [Route]
         [HttpGet]
         public Products GetAll()
