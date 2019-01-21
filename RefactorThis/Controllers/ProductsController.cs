@@ -75,13 +75,19 @@ namespace refactor_this.Controllers
         //        orig.Save();
         //}
 
-        //[Route("{id}")]
-        //[HttpDelete]
-        //public void Delete(Guid id)
-        //{
-        //    var product = new Models.Product(id);
-        //    product.Delete();
-        //}
+        [Route("{id}")]
+        [HttpDelete]
+        public async Task<IHttpActionResult> Delete(Guid id)
+        {
+            var request = new DeleteProductRequest { Id = id };
+
+            var response = await _productUseCase.Handle(request);
+
+            if (!response.Success)
+                return NotFound();
+
+            return Ok(true);
+        }
 
         //[Route("{productId}/options")]
         //[HttpGet]

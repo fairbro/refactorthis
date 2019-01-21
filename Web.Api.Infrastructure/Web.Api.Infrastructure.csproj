@@ -79,7 +79,7 @@
     <Compile Include="EntityFramework\Product.cs" />
     <Compile Include="EntityFramework\ProductOption.cs" />
     <Compile Include="IEntity.cs" />
-    <Compile Include="Repository.cs" />
+    <Compile Include="ProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

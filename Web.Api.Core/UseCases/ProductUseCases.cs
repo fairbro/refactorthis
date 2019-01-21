@@ -35,5 +35,12 @@ namespace Web.Api.Core.UseCases
 
             return new GetAllProductsByNameResponse { Products = products };
         }
+
+        public async Task<DeleteProductResponse> Handle(DeleteProductRequest message)
+        {
+            var result = await _productRepository.Delete(message.Id);
+
+            return new DeleteProductResponse { Success = result ? true : false };
+        }
     }
 }

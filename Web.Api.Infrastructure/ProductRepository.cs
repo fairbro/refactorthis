@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,18 +17,42 @@ namespace Web.Api.Infrastructure
             _context = context;
         }
 
-        public async Task<Core.Gateways.Repositories.Product> Get(Guid id)
+        public async Task<Web.Api.Core.Gateways.Repositories.Product> Get(Guid id)
         {
-            var product = await _context.Products.SingleOrDefaultAsync(p => p.Id == id);
+            var entity = await _context.Products.SingleOrDefaultAsync(p => p.Id == id);
 
-            return new Web.Api.Core.Gateways.Repositories.Product
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Description = product.Description,
-                DeliveryPrice = product.DeliveryPrice,
-                Price = product.Price
-            };
+            return AutoMapper.Mapper.Map<Web.Api.Core.Gateways.Repositories.Product>(entity);
+        }
+
+        public async Task<IEnumerable<Web.Api.Core.Gateways.Repositories.Product>> GetAll()
+        {
+            var entities = await _context.Products.ToListAsync();
+
+            return AutoMapper.Mapper.Map<IEnumerable<Web.Api.Core.Gateways.Repositories.Product>>(entities);
+        }
+
+        public async Task<IEnumerable<Web.Api.Core.Gateways.Repositories.Product>> GetAllByName(string name)
+        {
+            var allEntities = await _context.Products.ToListAsync();
+
+            var filteredEntities = allEntities.Where(e => e.Name.ToLower().Contains(name.ToLower()));
+
+            return AutoMapper.Mapper.Map<IEnumerable<Web.Api.Core.Gateways.Repositories.Product>>(filteredEntities);
+        }
+
+
+
+        public async Task<bool> Delete(Guid id)
+        {
+            var entity = await _context.Products.SingleOrDefaultAsync(p => p.Id == id);
+
+            if (entity == null)
+                return false;
+
+            _context.Products.Remove(entity);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
     }
 }

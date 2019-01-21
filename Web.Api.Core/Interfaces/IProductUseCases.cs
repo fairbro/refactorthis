@@ -9,5 +9,6 @@ namespace Web.Api.Core.Interfaces
         Task<GetProductResponse> Handle(GetProductRequest message);
         Task<GetAllProductsResponse> Handle(GetAllProductsRequest message);
         Task<GetAllProductsByNameResponse> Handle(GetAllProductsByNameRequest message);
+        Task<DeleteProductResponse> Handle(DeleteProductRequest message);
     }
 }

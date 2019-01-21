@@ -20,7 +20,7 @@ namespace refactor_me
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             builder.RegisterType<ApplicationDataContext>().As<ApplicationDataContext>();
-            builder.RegisterType<Repository>().As<IProductRepository>();
+            builder.RegisterType<ProductRepository>().As<IProductRepository>();
             builder.RegisterType<ProductUseCases>().As<IProductUseCases>();
 
             var container = builder.Build();
