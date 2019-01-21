@@ -9,9 +9,9 @@ namespace refactor_this.Controllers
     [RoutePrefix("products")]
     public class ProductsController : ApiController
     {
-        private readonly IGetProductUseCase _productUseCase;
+        private readonly IProductUseCases _productUseCase;
 
-        public ProductsController(IGetProductUseCase productUseCase)
+        public ProductsController(IProductUseCases productUseCase)
         {
             _productUseCase = productUseCase;
         }
@@ -20,19 +20,23 @@ namespace refactor_this.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetAll()
         {
-            var request = new GetAllProductsRequest { };
+            var request = new GetAllProductsRequest();
 
             var response = await _productUseCase.Handle(request);
 
             return Ok(response.Products);
         }
 
-        //[Route]
-        //[HttpGet]
-        //public Products SearchByName(string name)
-        //{
-        //    return new Products(name);
-        //}
+        [Route]
+        [HttpGet]
+        public async Task<IHttpActionResult> SearchByName(string name)
+        {
+            var request = new GetAllProductsByNameRequest { Name = name };
+
+            var response = await _productUseCase.Handle(request);
+
+            return Ok(response.Products);
+        }
 
         [Route("{id}")]
         [HttpGet]

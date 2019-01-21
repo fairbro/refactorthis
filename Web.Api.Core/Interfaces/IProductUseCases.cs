@@ -4,8 +4,10 @@ using Web.Api.Core.Dto.UseCaseRequests;
 
 namespace Web.Api.Core.Interfaces
 {
-    public interface IGetAllProductUseCase
+    public interface IProductUseCases
     {
+        Task<GetProductResponse> Handle(GetProductRequest message);
         Task<GetAllProductsResponse> Handle(GetAllProductsRequest message);
+        Task<GetAllProductsByNameResponse> Handle(GetAllProductsByNameRequest message);
     }
 }

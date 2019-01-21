@@ -8,5 +8,6 @@ namespace Web.Api.Core.Gateways.Repositories
     {
         Task<Product> Get(Guid id);
         Task<IEnumerable<Product>> GetAll();
+        Task<IEnumerable<Web.Api.Core.Gateways.Repositories.Product>> GetAllByName(string name);
     }
 }

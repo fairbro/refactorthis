@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using Web.Api.Core.Gateways.Repositories;
 using Web.Api.Infrastructure.EntityFramework;
@@ -25,9 +26,18 @@ namespace Web.Api.Infrastructure
 
         public async Task<IEnumerable<Web.Api.Core.Gateways.Repositories.Product>> GetAll()
         {
-            var entity = await _context.Products.ToListAsync();
+            var entities = await _context.Products.ToListAsync();
 
-            return AutoMapper.Mapper.Map<IEnumerable<Web.Api.Core.Gateways.Repositories.Product>>(entity);
+            return AutoMapper.Mapper.Map<IEnumerable<Web.Api.Core.Gateways.Repositories.Product>>(entities);
+        }
+
+        public async Task<IEnumerable<Web.Api.Core.Gateways.Repositories.Product>> GetAllByName(string name)
+        {
+            var allEntities = await _context.Products.ToListAsync();
+
+            var filteredEntities = allEntities.Where(e => e.Name.ToLower().Contains(name.ToLower()));
+
+            return AutoMapper.Mapper.Map<IEnumerable<Web.Api.Core.Gateways.Repositories.Product>>(filteredEntities);
         }
     }
 }

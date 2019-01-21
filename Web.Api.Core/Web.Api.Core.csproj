@@ -48,17 +48,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\ProductResponses\GetAllProductsByNameResponse.cs" />
     <Compile Include="Dto\ProductResponses\GetAllProductsResponse.cs" />
     <Compile Include="Dto\ProductResponses\GetProductResponse.cs" />
     <Compile Include="Dto\UseCaseRequests\GetAllProductsRequest.cs" />
+    <Compile Include="Dto\UseCaseRequests\GetAllProductsByNameRequest.cs" />
     <Compile Include="Dto\UseCaseRequests\GetProductRequest.cs" />
     <Compile Include="Gateways\Repositories\IProductRepository.cs" />
     <Compile Include="Gateways\Repositories\Product.cs" />
-    <Compile Include="Interfaces\IGetAllProductsUseCase.cs" />
-    <Compile Include="Interfaces\IGetProductUseCase.cs" />
+    <Compile Include="Interfaces\IProductUseCases.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UseCases\GetAllProductsUseCase.cs" />
-    <Compile Include="UseCases\GetProductUseCase.cs" />
+    <Compile Include="UseCases\ProductUseCases.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

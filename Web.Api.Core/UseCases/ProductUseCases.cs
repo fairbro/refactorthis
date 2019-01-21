@@ -6,11 +6,11 @@ using Web.Api.Core.Interfaces;
 
 namespace Web.Api.Core.UseCases
 {
-    public class GetProductUseCase : IGetProductUseCase
+    public class ProductUseCases : IProductUseCases
     {
         private readonly IProductRepository _productRepository;
 
-        public GetProductUseCase(IProductRepository productRepository)
+        public ProductUseCases(IProductRepository productRepository)
         {
             _productRepository = productRepository;
         }
@@ -27,6 +27,13 @@ namespace Web.Api.Core.UseCases
             var products = await _productRepository.GetAll();
 
             return new GetAllProductsResponse { Products = products };
+        }
+
+        public async Task<GetAllProductsByNameResponse> Handle(GetAllProductsByNameRequest message)
+        {
+            var products = await _productRepository.GetAllByName(message.Name);
+
+            return new GetAllProductsByNameResponse { Products = products };
         }
     }
 }
