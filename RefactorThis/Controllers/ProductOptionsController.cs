@@ -2,8 +2,6 @@
 using System.Threading.Tasks;
 using System.Web.Http;
 using Web.Api.Core.Dto.Requests.ProductOptions;
-using Web.Api.Core.Dto.UseCaseRequests;
-using Web.Api.Core.Gateways.Repositories;
 using Web.Api.Core.Interfaces;
 
 namespace refactor_this.Controllers
@@ -11,11 +9,22 @@ namespace refactor_this.Controllers
     [RoutePrefix("productOptions")]
     public class ProductOptionsController : ApiController
     {
-        private readonly IProductOptionHander _productOptionsHandler;
+        private readonly IProductOptionHandler _productOptionsHandler;
 
-        public ProductOptionsController(IProductOptionHander productOptionsHandler)
+        public ProductOptionsController(IProductOptionHandler productOptionsHandler)
         {
             _productOptionsHandler = productOptionsHandler;
+        }
+
+        [Route("{productId}/options")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetProductOptions(Guid productId)
+        {
+            var request = new GetProductOptionsRequest { ProductId = productId };
+
+            var response = await _productOptionsHandler.Handle(request);
+
+            return Ok(response.ProductOptions);
         }
 
         //[Route("{productId}/options")]

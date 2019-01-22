@@ -4,9 +4,9 @@ using Web.Api.Core.Dto.Responses.ProductOptions;
 
 namespace Web.Api.Core.Interfaces
 {
-    public interface IProductOptionHander
+    public interface IProductOptionHandler
     {
-        Task<GetProductOptionResponse> Handle(GetProductOptionRequest message);
+        Task<GetProductOptionsResponse> Handle(GetProductOptionsRequest message);
         //Task<GetAllProductOptionsResponse> Handle(GetAllProductOptionsRequest message);
         //Task<GetAllProductOptionsByNameResponse> Handle(GetAllProductOptionsByNameRequest message);
         //Task<DeleteProductOptionResponse> Handle(DeleteProductOptionRequest message);

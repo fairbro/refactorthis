@@ -52,13 +52,13 @@
     <Compile Include="Dto\Requests\ProductOption\DeleteProductOptionRequest.cs" />
     <Compile Include="Dto\Requests\ProductOption\GetAllProductsByNameRequest.cs" />
     <Compile Include="Dto\Requests\ProductOption\GetAllProductOptionsRequest.cs" />
-    <Compile Include="Dto\Requests\ProductOption\GetProductOptionRequest.cs" />
+    <Compile Include="Dto\Requests\ProductOption\GetProductOptionsRequest.cs" />
     <Compile Include="Dto\Requests\ProductOption\UpdateProductOptionRequest.cs" />
     <Compile Include="Dto\Responses\ProductOption\CreateProductOptionResponse.cs" />
     <Compile Include="Dto\Responses\ProductOption\DeleteProductOptionResponse.cs" />
     <Compile Include="Dto\Responses\ProductOption\GetAllProductsByNameResponse.cs" />
     <Compile Include="Dto\Responses\ProductOption\GetAllProductOptionsResponse.cs" />
-    <Compile Include="Dto\Responses\ProductOption\GetProductOptionResponse.cs" />
+    <Compile Include="Dto\Responses\ProductOption\GetProductOptionsResponse.cs" />
     <Compile Include="Dto\Responses\ProductOption\UpdateProductOptionResponse.cs" />
     <Compile Include="Dto\Responses\Product\UpdateProductResponse.cs" />
     <Compile Include="Dto\Responses\Product\GetAllProductsByNameResponse.cs" />
@@ -72,12 +72,15 @@
     <Compile Include="Dto\Requests\Product\GetAllProductsByNameRequest.cs" />
     <Compile Include="Dto\Requests\Product\DeleteProductRequest.cs" />
     <Compile Include="Dto\Requests\Product\GetProductRequest.cs" />
+    <Compile Include="Gateways\Repositories\IProductOptionRepository.cs" />
     <Compile Include="Gateways\Repositories\IRepository.cs" />
     <Compile Include="Gateways\Repositories\IProductRepository.cs" />
+    <Compile Include="Gateways\Repositories\ProductOption.cs" />
     <Compile Include="Gateways\Repositories\Product.cs" />
-    <Compile Include="Interfaces\IProductOptionHander.cs" />
+    <Compile Include="Interfaces\IProductOptionHandler.cs" />
     <Compile Include="Interfaces\IProductHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UseCases\ProductOptionHandler.cs" />
     <Compile Include="UseCases\ProductUseCases.cs" />
   </ItemGroup>
   <ItemGroup>
