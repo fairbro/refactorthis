@@ -80,8 +80,8 @@
     <Compile Include="Interfaces\IProductOptionHandler.cs" />
     <Compile Include="Interfaces\IProductHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UseCases\ProductHandler.cs" />
     <Compile Include="UseCases\ProductOptionHandler.cs" />
-    <Compile Include="UseCases\ProductUseCases.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
