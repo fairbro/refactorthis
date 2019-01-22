@@ -18,32 +18,30 @@ namespace refactor_this.Controllers
 
         [Route("{productId}/options")]
         [HttpGet]
-        public async Task<IHttpActionResult> GetProductOptions(Guid productId)
+        public IHttpActionResult GetProductOptions(Guid productId)
         {
             var request = new GetProductOptionsRequest { ProductId = productId };
 
-            var response = await _productOptionsHandler.Handle(request);
+            var response = _productOptionsHandler.Handle(request);
 
             return Ok(response.ProductOptions);
         }
 
-        //[Route("{productId}/options")]
-        //[HttpGet]
-        //public ProductOptions GetOptions(Guid productId)
-        //{
-        //    return new ProductOptions(productId);
-        //}
+        [Route("{productId}/options/{id}")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetProductOption(Guid productId, Guid optionId)
+        {
+            var request = new GetProductOptionRequest { ProductId = productId, OptionId = optionId };
 
-        //[Route("{productId}/options/{id}")]
-        //[HttpGet]
-        //public ProductOption GetOption(Guid productId, Guid id)
-        //{
-        //    var option = new ProductOption(id);
-        //    if (option.IsNew)
-        //        throw new HttpResponseException(HttpStatusCode.NotFound);
+            var response = await _productOptionsHandler.Handle(request);
 
-        //    return option;
-        //}
+            if (response.ProductOption == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(response.ProductOption);
+        }
 
         //[Route("{productId}/options")]
         //[HttpPost]

@@ -48,18 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dto\Requests\ProductOption\CreateProductOptionRequest.cs" />
-    <Compile Include="Dto\Requests\ProductOption\DeleteProductOptionRequest.cs" />
-    <Compile Include="Dto\Requests\ProductOption\GetAllProductsByNameRequest.cs" />
-    <Compile Include="Dto\Requests\ProductOption\GetAllProductOptionsRequest.cs" />
+    <Compile Include="Dto\Requests\ProductOption\GetProductOptionRequest.cs" />
     <Compile Include="Dto\Requests\ProductOption\GetProductOptionsRequest.cs" />
-    <Compile Include="Dto\Requests\ProductOption\UpdateProductOptionRequest.cs" />
-    <Compile Include="Dto\Responses\ProductOption\CreateProductOptionResponse.cs" />
-    <Compile Include="Dto\Responses\ProductOption\DeleteProductOptionResponse.cs" />
-    <Compile Include="Dto\Responses\ProductOption\GetAllProductsByNameResponse.cs" />
-    <Compile Include="Dto\Responses\ProductOption\GetAllProductOptionsResponse.cs" />
+    <Compile Include="Dto\Responses\ProductOption\GetProductOptionResponse.cs" />
     <Compile Include="Dto\Responses\ProductOption\GetProductOptionsResponse.cs" />
-    <Compile Include="Dto\Responses\ProductOption\UpdateProductOptionResponse.cs" />
     <Compile Include="Dto\Responses\Product\UpdateProductResponse.cs" />
     <Compile Include="Dto\Responses\Product\GetAllProductsByNameResponse.cs" />
     <Compile Include="Dto\Responses\Product\GetAllProductsResponse.cs" />

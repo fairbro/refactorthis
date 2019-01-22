@@ -49,7 +49,9 @@ namespace refactor_this.Controllers
             var response = await _productUseCase.Handle(request);
 
             if (response.Product == null)
+            {
                 return NotFound();
+            }
 
             return Ok(response.Product);
         }

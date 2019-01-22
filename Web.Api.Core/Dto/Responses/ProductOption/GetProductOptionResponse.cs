@@ -3,8 +3,8 @@ using Web.Api.Core.Gateways.Repositories;
 
 namespace Web.Api.Core.Dto.Responses.ProductOptions
 {
-    public class GetAllProductOptionsResponse
+    public class GetProductOptionResponse
     {
-        public IEnumerable<Product> Products { get; set; }
+        public ProductOption ProductOption { get; set; }
     }
 }

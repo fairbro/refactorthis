@@ -17,80 +17,18 @@ namespace Web.Api.Infrastructure
             _context = context;
         }
 
-        public async Task<IEnumerable<Core.Gateways.Repositories.ProductOption>> Get(Guid productId)
+        public IEnumerable<Core.Gateways.Repositories.ProductOption> Get(Guid productId)
         {
-            var allEntities = await _context.ProductOptions.ToListAsync();
+            var productOptions = _context.ProductOptions.Where(p => p.ProductId == productId);
 
-            var filteredEntities = allEntities.Where(e => e.ProductId == productId);
-
-            return AutoMapper.Mapper.Map<IEnumerable<Core.Gateways.Repositories.ProductOption>>(filteredEntities);
+            return AutoMapper.Mapper.Map<IEnumerable<Core.Gateways.Repositories.ProductOption>>(productOptions);
         }
 
-        //public async Task<Core.Gateways.Repositories.Product> Get(Guid id)
-        //{
-        //    var entity = await _context.Products.SingleOrDefaultAsync(p => p.Id == id);
-
-        //    return AutoMapper.Mapper.Map<Core.Gateways.Repositories.Product>(entity);
-        //}
-
-        //public async Task<IEnumerable<Core.Gateways.Repositories.Product>> GetAll()
-        //{
-        //    var entities = await _context.Products.ToListAsync();
-
-        //    return AutoMapper.Mapper.Map<IEnumerable<Core.Gateways.Repositories.Product>>(entities);
-        //}
-
-        //public async Task<IEnumerable<Core.Gateways.Repositories.Product>> GetAllByName(string name)
-        //{
-        //    var allEntities = await _context.Products.ToListAsync();
-
-        //    var filteredEntities = allEntities.Where(e => e.Name.ToLower().Contains(name.ToLower()));
-
-        //    return AutoMapper.Mapper.Map<IEnumerable<Core.Gateways.Repositories.Product>>(filteredEntities);
-        //}
-
-        //public async Task<bool> Delete(Guid id)
-        //{
-        //    var entity = await _context.Products.SingleOrDefaultAsync(p => p.Id == id);
-
-        //    if (entity == null)
-        //        return false;
-
-        //    _context.Products.Remove(entity);
-        //    await _context.SaveChangesAsync();
-
-        //    return true;
-        //}
-
-        //public async Task<Core.Gateways.Repositories.Product> Create(Core.Gateways.Repositories.Product product)
-        //{
-        //    var entity = AutoMapper.Mapper.Map<EntityFramework.Product>(product);
-        //    entity.Id = Guid.NewGuid();
-        //    //TODO: some validation logic.
-        //    _context.Products.Add(entity);
-        //    await _context.SaveChangesAsync();
-
-        //    var createdEntity = AutoMapper.Mapper.Map<Core.Gateways.Repositories.Product>(entity);
-
-        //    return createdEntity;
-        //}
-
-        //public async Task<bool> Update(Core.Gateways.Repositories.Product product)
-        //{
-        //    var entity = await _context.Products.SingleOrDefaultAsync(p => p.Id == product.Id);
-
-        //    if (entity == null)
-        //        return false;
-
-        //    AutoMapper.Mapper.Map(product, entity);
-
-        //    await _context.SaveChangesAsync();
-
-        //    var createdEntity = AutoMapper.Mapper.Map<Core.Gateways.Repositories.Product>(entity);
-
-        //    return true;
-        //}
-
-
+        public async Task<Core.Gateways.Repositories.ProductOption> Get(Guid productId, Guid optionId)
+        {
+            var productOpton = await _context.ProductOptions.SingleOrDefaultAsync(p => p.ProductId == productId && p.Id == optionId);
+            
+            return AutoMapper.Mapper.Map<Core.Gateways.Repositories.ProductOption>(productOpton);
+        }
     }
 }
