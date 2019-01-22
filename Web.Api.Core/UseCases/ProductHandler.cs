@@ -7,11 +7,11 @@ using Web.Api.Core.Interfaces;
 
 namespace Web.Api.Core.UseCases
 {
-    public class ProductUseCases : IProductHandler
+    public class ProductHandler : IProductHandler
     {
         private readonly IProductRepository _productRepository;
 
-        public ProductUseCases(IProductRepository productRepository)
+        public ProductHandler(IProductRepository productRepository)
         {
             _productRepository = productRepository;
         }
