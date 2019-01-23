@@ -26,9 +26,9 @@ namespace Web.Api.Infrastructure
 
         public async Task<Core.Gateways.Repositories.ProductOption> Get(Guid productId, Guid optionId)
         {
-            var productOpton = await _context.ProductOptions.SingleOrDefaultAsync(p => p.ProductId == productId && p.Id == optionId);
+            var productOption = await _context.ProductOptions.SingleOrDefaultAsync(p => p.ProductId == productId && p.Id == optionId);
             
-            return AutoMapper.Mapper.Map<Core.Gateways.Repositories.ProductOption>(productOpton);
+            return AutoMapper.Mapper.Map<Core.Gateways.Repositories.ProductOption>(productOption);
         }
     }
 }

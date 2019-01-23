@@ -27,7 +27,7 @@ namespace refactor_this.Controllers
             return Ok(response.ProductOptions);
         }
 
-        [Route("{productId}/options/{id}")]
+        [Route("{productId}/options/{optionId}")]
         [HttpGet]
         public async Task<IHttpActionResult> GetProductOption(Guid productId, Guid optionId)
         {
