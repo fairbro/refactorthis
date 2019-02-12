@@ -11,11 +11,11 @@ namespace refactor_this.Controllers
     [RoutePrefix("products")]
     public class ProductsController : ApiController
     {
-        private readonly IProductHandler _productUseCase;
+        private readonly IProductHandler _productHandler;
 
-        public ProductsController(IProductHandler productUseCase)
+        public ProductsController(IProductHandler productHandler)
         {
-            _productUseCase = productUseCase;
+            _productHandler = productHandler;
         }
 
         [Route]
@@ -24,7 +24,7 @@ namespace refactor_this.Controllers
         {
             var request = new GetAllProductsRequest();
 
-            var response = await _productUseCase.Handle(request);
+            var response = await _productHandler.Handle(request);
 
             return Ok(response.Products);
         }
@@ -35,7 +35,7 @@ namespace refactor_this.Controllers
         {
             var request = new GetAllProductsByNameRequest { Name = name };
 
-            var response = await _productUseCase.Handle(request);
+            var response = await _productHandler.Handle(request);
 
             return Ok(response.Products);
         }
@@ -46,7 +46,7 @@ namespace refactor_this.Controllers
         {
             var request = new GetProductRequest { Id = id };
 
-            var response = await _productUseCase.Handle(request);
+            var response = await _productHandler.Handle(request);
 
             if (response.Product == null)
             {
@@ -63,7 +63,7 @@ namespace refactor_this.Controllers
             //TODO: some validation logic.
             var request = new CreateProductRequest { Product = product };
 
-            var response = await _productUseCase.Handle(request);
+            var response = await _productHandler.Handle(request);
 
             if (response.Product.Id == null)
                 return BadRequest();
@@ -78,7 +78,7 @@ namespace refactor_this.Controllers
             //TODO: some validation logic.
             var request = new UpdateProductRequest { Product = product };
 
-            var response = await _productUseCase.Handle(request);
+            var response = await _productHandler.Handle(request);
 
             if (!response.Success)
                 return BadRequest();
@@ -92,7 +92,7 @@ namespace refactor_this.Controllers
         {
             var request = new DeleteProductRequest { Id = id };
 
-            var response = await _productUseCase.Handle(request);
+            var response = await _productHandler.Handle(request);
 
             if (!response.Success)
                 return NotFound();
